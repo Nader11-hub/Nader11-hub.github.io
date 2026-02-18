@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CyberBoyNader | Cybersecurity Portfolio </title>
+  <title>CyberBoyNader | Cybersecurity Portfolio</title>
 
   <link rel="icon" href="profile.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Bellota:wght@400;700&display=swap" rel="stylesheet">
@@ -54,8 +54,12 @@
     </p>
 
     <div class="flex justify-center gap-4">
-      <a href="#projects" class="px-6 py-3 bg-white text-blue-900 rounded-full font-semibold hover:bg-blue-100">Projects</a>
-      <a href="#contact" class="px-6 py-3 border-2 border-white rounded-full hover:bg-white/10">Contact</a>
+      <a href="#projects" class="px-6 py-3 bg-white text-blue-900 rounded-full font-semibold hover:bg-blue-100">
+        Projects
+      </a>
+      <a href="#contact" class="px-6 py-3 border-2 border-white rounded-full hover:bg-white/10">
+        Contact
+      </a>
     </div>
   </div>
 </header>
@@ -66,16 +70,79 @@
     <h2 class="text-3xl font-bold text-center mb-8 text-primary">About Me</h2>
     <div class="bg-white shadow-lg rounded-xl p-8 text-center">
       <p class="text-lg">
-        I am <strong>CyberBoyNader</strong>, a Network & Cybersecurity student passionate about
-        penetration testing, network defense, and threat intelligence.
-        I focus on hands-on security projects and real-world attack simulations.
+        I am <strong>CyberBoyNader</strong>, a network and cybersecurity student passionate about
+        penetration testing, network defense, and threat analysis.
+        I focus on hands-on projects and real-world security simulations.
       </p>
     </div>
   </div>
 </section>
 
+<!-- SKILLS -->
+<section class="py-20 bg-gray-100">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-12 text-primary">
+      Skills & Expertise
+    </h2>
+
+    <div class="space-y-8">
+
+      <div class="skill-item">
+        <div class="flex justify-between mb-1">
+          <span>Linux & Networking</span>
+          <span>85%</span>
+        </div>
+        <div class="w-full bg-gray-300 rounded-full h-2">
+          <div class="bg-primary h-2 rounded-full skill-bar" data-width="85%"></div>
+        </div>
+      </div>
+
+      <div class="skill-item">
+        <div class="flex justify-between mb-1">
+          <span>Penetration Testing (Basics)</span>
+          <span>70%</span>
+        </div>
+        <div class="w-full bg-gray-300 rounded-full h-2">
+          <div class="bg-primary h-2 rounded-full skill-bar" data-width="70%"></div>
+        </div>
+      </div>
+
+      <div class="skill-item">
+        <div class="flex justify-between mb-1">
+          <span>Python (Security Scripts)</span>
+          <span>75%</span>
+        </div>
+        <div class="w-full bg-gray-300 rounded-full h-2">
+          <div class="bg-primary h-2 rounded-full skill-bar" data-width="75%"></div>
+        </div>
+      </div>
+
+      <div class="skill-item">
+        <div class="flex justify-between mb-1">
+          <span>Web Security</span>
+          <span>70%</span>
+        </div>
+        <div class="w-full bg-gray-300 rounded-full h-2">
+          <div class="bg-primary h-2 rounded-full skill-bar" data-width="70%"></div>
+        </div>
+      </div>
+
+      <div class="skill-item">
+        <div class="flex justify-between mb-1">
+          <span>Cloud & VPN Networking</span>
+          <span>65%</span>
+        </div>
+        <div class="w-full bg-gray-300 rounded-full h-2">
+          <div class="bg-primary h-2 rounded-full skill-bar" data-width="65%"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- PROJECTS -->
-<section id="projects" class="py-20 bg-gray-100">
+<section id="projects" class="py-20">
   <div class="max-w-6xl mx-auto px-6">
     <h2 class="text-3xl font-bold text-center mb-12 text-primary">Featured Projects</h2>
 
@@ -84,7 +151,7 @@
       <div class="bg-white p-6 rounded-xl shadow-lg">
         <h3 class="text-xl font-semibold mb-2">Threat Intelligence Honeypot</h3>
         <p class="text-sm text-gray-600 mb-4">
-          SSH honeypot using Cowrie and ELK Stack to analyze attacker behavior and brute-force attempts.
+          SSH honeypot using Cowrie and ELK Stack to analyze attacker behavior.
         </p>
         <span class="text-xs text-blue-600">Honeypot • ELK • Docker</span>
       </div>
@@ -92,7 +159,7 @@
       <div class="bg-white p-6 rounded-xl shadow-lg">
         <h3 class="text-xl font-semibold mb-2">Hybrid Cloud Connectivity</h3>
         <p class="text-sm text-gray-600 mb-4">
-          Site-to-site VPN connecting on-prem and cloud networks with routing and monitoring analysis.
+          Site-to-site VPN connecting on-premise and cloud networks.
         </p>
         <span class="text-xs text-blue-600">VPN • Networking • Cloud</span>
       </div>
@@ -100,7 +167,7 @@
       <div class="bg-white p-6 rounded-xl shadow-lg">
         <h3 class="text-xl font-semibold mb-2">FilmForge – Secure Web Platform</h3>
         <p class="text-sm text-gray-600 mb-4">
-          Secure PHP web application with authentication, role-based access control, and SQL injection protection.
+          Secure PHP web application with authentication and SQL injection protection.
         </p>
         <span class="text-xs text-blue-600">PHP • Web Security</span>
       </div>
@@ -108,7 +175,7 @@
       <div class="bg-white p-6 rounded-xl shadow-lg">
         <h3 class="text-xl font-semibold mb-2">CPU Scheduling Simulator</h3>
         <p class="text-sm text-gray-600 mb-4">
-          OS simulator implementing FCFS, SJF, Priority, and Round Robin algorithms with Gantt chart visualization.
+          OS simulator implementing FCFS, SJF, Priority, and Round Robin algorithms.
         </p>
         <span class="text-xs text-blue-600">Python • Operating Systems</span>
       </div>
@@ -116,7 +183,7 @@
       <div class="bg-white p-6 rounded-xl shadow-lg">
         <h3 class="text-xl font-semibold mb-2">Software Entropy Research</h3>
         <p class="text-sm text-gray-600 mb-4">
-          Research exploring software entropy, system complexity, and maintainability degradation.
+          Research exploring system complexity and software maintainability.
         </p>
         <span class="text-xs text-blue-600">Software Engineering • Research</span>
       </div>
@@ -126,19 +193,18 @@
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="py-20">
+<section id="contact" class="py-20 bg-gray-100">
   <div class="max-w-4xl mx-auto px-6 text-center">
     <h2 class="text-3xl font-bold mb-8 text-primary">Get In Touch</h2>
-    <p class="mb-6">Feel free to contact me for collaboration or opportunities.</p>
 
     <div class="flex justify-center gap-6 text-3xl">
-      <a href="mailto:elfikynader467@gmail.com" class="text-gray-700 hover:text-primary">
+      <a href="mailto:elfikynader467@gmail.com" class="hover:text-primary">
         <i class="fas fa-envelope"></i>
       </a>
-      <a href="https://github.com/Nader11-hub" target="_blank" class="text-gray-700 hover:text-primary">
+      <a href="https://github.com/Nader11-hub" target="_blank" class="hover:text-primary">
         <i class="fab fa-github"></i>
       </a>
-      <a href="https://www.linkedin.com/in/nader-elfiky2333/" target="_blank" class="text-gray-700 hover:text-primary">
+      <a href="https://www.linkedin.com/in/nader-elfiky2333/" target="_blank" class="hover:text-primary">
         <i class="fab fa-linkedin"></i>
       </a>
     </div>
@@ -153,6 +219,21 @@ particlesJS("particles-js", {
     move: { speed: 2 },
     line_linked: { enable: true }
   }
+});
+
+const skillBars = document.querySelectorAll('.skill-bar');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.width = entry.target.dataset.width;
+    }
+  });
+}, { threshold: 0.5 });
+
+skillBars.forEach(bar => {
+  bar.style.width = '0';
+  bar.style.transition = 'width 1.5s ease-in-out';
+  observer.observe(bar);
 });
 </script>
 
