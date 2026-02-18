@@ -19,8 +19,8 @@
             bellota: ['Bellota', 'cursive'],
           },
           colors: {
-            primary: '#3B82F6',
-            secondary: '#1E40AF',
+            neon: '#22d3ee',
+            neonGreen: '#00ff9c',
           }
         }
       }
@@ -29,35 +29,61 @@
 
   <style>
     html { scroll-behavior: smooth; }
-    body { font-family: 'Bellota', cursive; }
+    body {
+      font-family: 'Bellota', cursive;
+      background: #020617;
+      color: #e5e7eb;
+    }
     #particles-js {
       position: absolute;
       width: 100%;
       height: 100%;
       z-index: 0;
     }
+    .neon-glow {
+      text-shadow: 0 0 10px #22d3ee, 0 0 20px #22d3ee;
+    }
+    .card {
+      background: #020617;
+      border: 1px solid rgba(34,211,238,0.3);
+      box-shadow: 0 0 15px rgba(34,211,238,0.15);
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 30px rgba(34,211,238,0.5);
+    }
   </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800">
+<body>
 
 <!-- HERO -->
-<header class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white overflow-hidden">
+<header class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-slate-900 to-black overflow-hidden">
   <div id="particles-js"></div>
 
   <div class="relative z-10 text-center px-6">
-    <img src="profile.png" class="w-40 h-40 rounded-full mx-auto border-4 border-white mb-6 shadow-xl" alt="CyberBoyNader">
+    <img src="profile.png"
+         class="w-40 h-40 rounded-full mx-auto border-4 border-neonGreen mb-6 shadow-[0_0_25px_#00ff9c]"
+         alt="CyberBoyNader">
 
-    <h1 class="text-5xl font-bold mb-4">CyberBoyNader</h1>
-    <p class="text-xl text-blue-200 mb-6">
+    <h1 class="text-5xl font-bold mb-4 neon-glow text-neonGreen">
+      CyberBoyNader
+    </h1>
+
+    <p class="text-xl text-neon mb-6">
       Network & Cybersecurity Student | Aspiring Penetration Tester
     </p>
 
     <div class="flex justify-center gap-4">
-      <a href="#projects" class="px-6 py-3 bg-white text-blue-900 rounded-full font-semibold hover:bg-blue-100">
+      <a href="#projects"
+         class="px-6 py-3 border border-neonGreen text-neonGreen rounded-full
+                hover:bg-neonGreen hover:text-black transition shadow-[0_0_15px_#00ff9c]">
         Projects
       </a>
-      <a href="#contact" class="px-6 py-3 border-2 border-white rounded-full hover:bg-white/10">
+      <a href="#contact"
+         class="px-6 py-3 border border-neon rounded-full text-neon
+                hover:bg-neon hover:text-black transition shadow-[0_0_15px_#22d3ee]">
         Contact
       </a>
     </div>
@@ -66,114 +92,55 @@
 
 <!-- ABOUT -->
 <section class="py-20">
-  <div class="max-w-4xl mx-auto px-6">
-    <h2 class="text-3xl font-bold text-center mb-8 text-primary">About Me</h2>
-    <div class="bg-white shadow-lg rounded-xl p-8 text-center">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold mb-8 neon-glow text-neon">About Me</h2>
+    <div class="card rounded-xl p-8">
       <p class="text-lg">
-        I am <strong>CyberBoyNader</strong>, a network and cybersecurity student passionate about
-        penetration testing, network defense, and threat analysis.
-        I focus on hands-on projects and real-world security simulations.
+        I am <strong class="text-neonGreen">CyberBoyNader</strong>, a network and cybersecurity student
+        passionate about penetration testing, network defense, and threat analysis.
       </p>
     </div>
   </div>
 </section>
 
 <!-- SKILLS -->
-<!-- SKILLS -->
-<section class="py-20 bg-gray-100">
+<section class="py-20 bg-black/40">
   <div class="max-w-6xl mx-auto px-6">
-    <h2 class="text-3xl font-bold text-center mb-12 text-primary">
+    <h2 class="text-3xl font-bold text-center mb-12 neon-glow text-neonGreen">
       Technical Skills
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-      <!-- Cybersecurity -->
-      <div class="bg-white rounded-xl shadow-lg p-6">
-        <h3 class="text-xl font-semibold mb-4 text-gray-800">
-          🛡️ Cybersecurity
-        </h3>
-        <ul class="space-y-2 text-sm text-gray-600">
+      <div class="card rounded-xl p-6">
+        <h3 class="text-xl font-semibold mb-4 text-neonGreen">🛡 Cybersecurity</h3>
+        <ul class="space-y-2 text-sm">
           <li>• Penetration Testing (Basics)</li>
           <li>• Threat Intelligence</li>
           <li>• Honeypots (Cowrie)</li>
-          <li>• Brute Force Attack Analysis</li>
-          <li>• Log Analysis & SIEM Concepts</li>
-          <li>• ELK Stack (Elasticsearch, Logstash, Kibana)</li>
-          <li>• Web Security (SQLi, CSRF)</li>
+          <li>• Brute Force Analysis</li>
+          <li>• ELK Stack & SIEM Concepts</li>
         </ul>
       </div>
 
-      <!-- Networking -->
-      <div class="bg-white rounded-xl shadow-lg p-6">
-        <h3 class="text-xl font-semibold mb-4 text-gray-800">
-          🌐 Networking
-        </h3>
-        <ul class="space-y-2 text-sm text-gray-600">
+      <div class="card rounded-xl p-6">
+        <h3 class="text-xl font-semibold mb-4 text-neonGreen">🌐 Networking</h3>
+        <ul class="space-y-2 text-sm">
           <li>• TCP/IP & OSI Model</li>
-          <li>• VLAN & Network Segmentation</li>
-          <li>• Routing & Switching</li>
+          <li>• VLAN & Routing</li>
           <li>• Site-to-Site VPN</li>
           <li>• GRE Tunneling</li>
-          <li>• ICMP / Ping Analysis</li>
           <li>• Network Monitoring</li>
         </ul>
       </div>
 
-      <!-- Cloud & Infrastructure -->
-      <div class="bg-white rounded-xl shadow-lg p-6">
-        <h3 class="text-xl font-semibold mb-4 text-gray-800">
-          ☁️ Cloud & Infrastructure
-        </h3>
-        <ul class="space-y-2 text-sm text-gray-600">
-          <li>• Hybrid Cloud Architecture</li>
-          <li>• On-Prem + Cloud Connectivity</li>
-          <li>• VPN over Cloud</li>
-          <li>• Cloud Networking Fundamentals</li>
-          <li>• Latency & Throughput Analysis</li>
-        </ul>
-      </div>
-
-      <!-- Programming -->
-      <div class="bg-white rounded-xl shadow-lg p-6">
-        <h3 class="text-xl font-semibold mb-4 text-gray-800">
-          💻 Programming
-        </h3>
-        <ul class="space-y-2 text-sm text-gray-600">
-          <li>• Python (Security & OS Projects)</li>
-          <li>• PHP (Secure Web Applications)</li>
-          <li>• Bash Scripting (Basics)</li>
+      <div class="card rounded-xl p-6">
+        <h3 class="text-xl font-semibold mb-4 text-neonGreen">💻 Programming</h3>
+        <ul class="space-y-2 text-sm">
+          <li>• Python (Security Scripts)</li>
+          <li>• PHP (Secure Web Apps)</li>
+          <li>• Bash (Basics)</li>
           <li>• REST APIs</li>
-          <li>• Object-Oriented Programming</li>
-        </ul>
-      </div>
-
-      <!-- Tools -->
-      <div class="bg-white rounded-xl shadow-lg p-6">
-        <h3 class="text-xl font-semibold mb-4 text-gray-800">
-          🧰 Tools & Technologies
-        </h3>
-        <ul class="space-y-2 text-sm text-gray-600">
-          <li>• Linux (Ubuntu / Kali)</li>
-          <li>• Docker & Docker Compose</li>
-          <li>• Git & GitHub</li>
-          <li>• Packet Tracer</li>
-          <li>• Wireshark (Basics)</li>
-          <li>• VS Code</li>
-        </ul>
-      </div>
-
-      <!-- Concepts -->
-      <div class="bg-white rounded-xl shadow-lg p-6">
-        <h3 class="text-xl font-semibold mb-4 text-gray-800">
-          📚 Core Concepts
-        </h3>
-        <ul class="space-y-2 text-sm text-gray-600">
-          <li>• Operating Systems Concepts</li>
-          <li>• CPU Scheduling Algorithms</li>
-          <li>• Software Entropy</li>
-          <li>• Secure System Design</li>
-          <li>• Monitoring & Logging Pipelines</li>
         </ul>
       </div>
 
@@ -184,48 +151,25 @@
 <!-- PROJECTS -->
 <section id="projects" class="py-20">
   <div class="max-w-6xl mx-auto px-6">
-    <h2 class="text-3xl font-bold text-center mb-12 text-primary">Featured Projects</h2>
+    <h2 class="text-3xl font-bold text-center mb-12 neon-glow text-neon">
+      Featured Projects
+    </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-      <div class="bg-white p-6 rounded-xl shadow-lg">
-        <h3 class="text-xl font-semibold mb-2">Threat Intelligence Honeypot</h3>
-        <p class="text-sm text-gray-600 mb-4">
-          SSH honeypot using Cowrie and ELK Stack to analyze attacker behavior.
-        </p>
-        <span class="text-xs text-blue-600">Honeypot • ELK • Docker</span>
+      <div class="card p-6 rounded-xl">
+        <h3 class="text-xl font-semibold mb-2 text-neonGreen">Threat Intelligence Honeypot</h3>
+        <p class="text-sm mb-3">SSH honeypot using Cowrie and ELK Stack.</p>
       </div>
 
-      <div class="bg-white p-6 rounded-xl shadow-lg">
-        <h3 class="text-xl font-semibold mb-2">Hybrid Cloud Connectivity</h3>
-        <p class="text-sm text-gray-600 mb-4">
-          Site-to-site VPN connecting on-premise and cloud networks.
-        </p>
-        <span class="text-xs text-blue-600">VPN • Networking • Cloud</span>
+      <div class="card p-6 rounded-xl">
+        <h3 class="text-xl font-semibold mb-2 text-neonGreen">Hybrid Cloud Connectivity</h3>
+        <p class="text-sm mb-3">Site-to-site VPN between on-prem & cloud.</p>
       </div>
 
-      <div class="bg-white p-6 rounded-xl shadow-lg">
-        <h3 class="text-xl font-semibold mb-2">FilmForge – Secure Web Platform</h3>
-        <p class="text-sm text-gray-600 mb-4">
-          Secure PHP web application with authentication and SQL injection protection.
-        </p>
-        <span class="text-xs text-blue-600">PHP • Web Security</span>
-      </div>
-
-      <div class="bg-white p-6 rounded-xl shadow-lg">
-        <h3 class="text-xl font-semibold mb-2">CPU Scheduling Simulator</h3>
-        <p class="text-sm text-gray-600 mb-4">
-          OS simulator implementing FCFS, SJF, Priority, and Round Robin algorithms.
-        </p>
-        <span class="text-xs text-blue-600">Python • Operating Systems</span>
-      </div>
-
-      <div class="bg-white p-6 rounded-xl shadow-lg">
-        <h3 class="text-xl font-semibold mb-2">Software Entropy Research</h3>
-        <p class="text-sm text-gray-600 mb-4">
-          Research exploring system complexity and software maintainability.
-        </p>
-        <span class="text-xs text-blue-600">Software Engineering • Research</span>
+      <div class="card p-6 rounded-xl">
+        <h3 class="text-xl font-semibold mb-2 text-neonGreen">FilmForge Secure Platform</h3>
+        <p class="text-sm mb-3">Secure PHP application with SQLi protection.</p>
       </div>
 
     </div>
@@ -233,18 +177,18 @@
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="py-20 bg-gray-100">
+<section id="contact" class="py-20 bg-black/40">
   <div class="max-w-4xl mx-auto px-6 text-center">
-    <h2 class="text-3xl font-bold mb-8 text-primary">Get In Touch</h2>
+    <h2 class="text-3xl font-bold mb-8 neon-glow text-neonGreen">Get In Touch</h2>
 
     <div class="flex justify-center gap-6 text-3xl">
-      <a href="mailto:elfikynader467@gmail.com" class="hover:text-primary">
+      <a href="mailto:elfikynader467@gmail.com" class="hover:text-neonGreen">
         <i class="fas fa-envelope"></i>
       </a>
-      <a href="https://github.com/Nader11-hub" target="_blank" class="hover:text-primary">
+      <a href="https://github.com/Nader11-hub" target="_blank" class="hover:text-neonGreen">
         <i class="fab fa-github"></i>
       </a>
-      <a href="https://www.linkedin.com/in/nader-elfiky2333/" target="_blank" class="hover:text-primary">
+      <a href="https://www.linkedin.com/in/nader-elfiky2333/" target="_blank" class="hover:text-neonGreen">
         <i class="fab fa-linkedin"></i>
       </a>
     </div>
@@ -254,26 +198,11 @@
 <script>
 particlesJS("particles-js", {
   particles: {
-    number: { value: 60 },
-    size: { value: 3 },
-    move: { speed: 2 },
-    line_linked: { enable: true }
+    number: { value: 80 },
+    size: { value: 2 },
+    move: { speed: 1.5 },
+    line_linked: { enable: true, color: "#22d3ee" }
   }
-});
-
-const skillBars = document.querySelectorAll('.skill-bar');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.width = entry.target.dataset.width;
-    }
-  });
-}, { threshold: 0.5 });
-
-skillBars.forEach(bar => {
-  bar.style.width = '0';
-  bar.style.transition = 'width 1.5s ease-in-out';
-  observer.observe(bar);
 });
 </script>
 
