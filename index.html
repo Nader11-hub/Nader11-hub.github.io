@@ -3,760 +3,515 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>CyberBoyNader | Cybersecurity Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<title>Nader Elfiky | Cybersecurity Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
-  :root {
-    --bg:        #0a0e1a;
-    --surface:   #0f1525;
-    --card:      #131929;
-    --border:    #1e2d4a;
-    --accent:    #00d4ff;
-    --accent2:   #0066ff;
-    --green:     #00ff9d;
-    --text:      #c8d8f0;
-    --muted:     #5a7090;
-    --heading:   #e8f0ff;
-    --mono:      'Share Tech Mono', monospace;
-    --sans:      'Syne', sans-serif;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  /* ── SCANLINE OVERLAY ── */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0,0,0,0.03) 2px,
-      rgba(0,0,0,0.03) 4px
-    );
-    pointer-events: none;
-    z-index: 9999;
-  }
-
-  /* ── GRID BG ── */
-  body::after {
-    content: '';
-    position: fixed; inset: 0;
-    background-image:
-      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(10,14,26,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 2.5rem;
-    height: 56px;
-  }
-  .nav-brand {
-    font-family: var(--mono);
-    color: var(--accent);
-    font-size: 0.95rem;
-    letter-spacing: 0.05em;
-  }
-  .nav-brand span { color: var(--green); }
-  .nav-links { display: flex; gap: 2rem; }
-  .nav-links a {
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--accent); }
-
-  /* ── HERO ── */
-  .hero {
-    position: relative; z-index: 1;
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    justify-content: center; align-items: flex-start;
-    padding: 8rem 6rem 4rem;
-    max-width: 1100px; margin: 0 auto;
-  }
-  .hero-prompt {
-    font-family: var(--mono);
-    font-size: 0.85rem;
-    color: var(--green);
-    margin-bottom: 1.2rem;
-    opacity: 0;
-    animation: fadeUp 0.6s ease 0.2s forwards;
-  }
-  .hero-name {
-    font-size: clamp(3rem, 7vw, 6rem);
-    font-weight: 800;
-    color: var(--heading);
-    line-height: 1;
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
-    opacity: 0;
-    animation: fadeUp 0.6s ease 0.4s forwards;
-  }
-  .hero-name span {
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .hero-role {
-    font-family: var(--mono);
-    font-size: 1rem;
-    color: var(--muted);
-    margin-bottom: 2rem;
-    opacity: 0;
-    animation: fadeUp 0.6s ease 0.6s forwards;
-  }
-  .hero-role span { color: var(--accent); }
-  .hero-desc {
-    font-size: 1.05rem;
-    color: var(--text);
-    max-width: 560px;
-    margin-bottom: 2.5rem;
-    opacity: 0;
-    animation: fadeUp 0.6s ease 0.8s forwards;
-  }
-  .hero-focus {
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    color: var(--muted);
-    border-left: 2px solid var(--accent);
-    padding-left: 1rem;
-    opacity: 0;
-    animation: fadeUp 0.6s ease 1s forwards;
-  }
-  .hero-focus span { color: var(--green); }
-  .hero-cta {
-    display: flex; gap: 1rem; margin-top: 2.5rem;
-    opacity: 0;
-    animation: fadeUp 0.6s ease 1.1s forwards;
-  }
-  .btn {
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    padding: 0.7rem 1.6rem;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.25s;
-    display: inline-flex; align-items: center; gap: 0.5rem;
-  }
-  .btn-primary {
-    background: var(--accent);
-    color: var(--bg);
-    border: none;
-    font-weight: 700;
-  }
-  .btn-primary:hover { background: #00eeff; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,212,255,0.3); }
-  .btn-outline {
-    background: transparent;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-  }
-  .btn-outline:hover { background: rgba(0,212,255,0.07); transform: translateY(-2px); }
-
-  /* ── SECTIONS ── */
-  section {
-    position: relative; z-index: 1;
-    max-width: 1100px; margin: 0 auto;
-    padding: 5rem 6rem;
-  }
-  .section-label {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--accent);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-  .section-title {
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--heading);
-    margin-bottom: 3rem;
-    position: relative;
-    display: inline-block;
-  }
-  .section-title::after {
-    content: '';
-    position: absolute; left: 0; bottom: -8px;
-    width: 40px; height: 3px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    border-radius: 2px;
-  }
-
-  /* ── SKILLS GRID ── */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-  .skill-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-  .skill-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-  .skill-card-title {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--heading);
-    margin-bottom: 1rem;
-    display: flex; align-items: center; gap: 0.5rem;
-  }
-  .skill-tag {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--text);
-    background: rgba(0,212,255,0.06);
-    border: 1px solid rgba(0,212,255,0.15);
-    border-radius: 3px;
-    padding: 0.2rem 0.5rem;
-    display: inline-block;
-    margin: 0.2rem 0.2rem 0.2rem 0;
-    transition: all 0.2s;
-  }
-  .skill-tag:hover { background: rgba(0,212,255,0.14); border-color: var(--accent); color: var(--accent); }
-
-  /* ── PROJECTS ── */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
-  }
-  .project-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.8rem;
-    cursor: pointer;
-    text-decoration: none;
-    display: block;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-  .project-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .project-card:hover {
-    border-color: rgba(0,212,255,0.4);
-    transform: translateY(-5px);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,212,255,0.1);
-  }
-  .project-card:hover::before { opacity: 1; }
-  .project-card-header {
-    display: flex; justify-content: space-between; align-items: flex-start;
-    margin-bottom: 0.8rem;
-  }
-  .project-icon {
-    font-size: 1.6rem;
-    line-height: 1;
-  }
-  .project-li-badge {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: var(--accent);
-    border: 1px solid rgba(0,212,255,0.3);
-    border-radius: 3px;
-    padding: 0.2rem 0.5rem;
-    opacity: 0;
-    transition: opacity 0.3s;
-    display: flex; align-items: center; gap: 0.3rem;
-  }
-  .project-card:hover .project-li-badge { opacity: 1; }
-  .project-card-title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--heading);
-    margin-bottom: 0.6rem;
-  }
-  .project-card-desc {
-    font-size: 0.85rem;
-    color: var(--muted);
-    line-height: 1.6;
-    margin-bottom: 1.2rem;
-  }
-  .project-tags {
-    display: flex; flex-wrap: wrap; gap: 0.4rem;
-  }
-  .project-tag {
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    color: var(--accent);
-    background: rgba(0,212,255,0.07);
-    border: 1px solid rgba(0,212,255,0.2);
-    border-radius: 3px;
-    padding: 0.18rem 0.5rem;
-  }
-
-  /* ── ABOUT ── */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-  .about-text p { color: var(--text); font-size: 0.95rem; margin-bottom: 1rem; }
-  .about-text p strong { color: var(--heading); }
-  .terminal-block {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  .terminal-bar {
-    background: var(--border);
-    padding: 0.5rem 1rem;
-    display: flex; gap: 0.4rem; align-items: center;
-  }
-  .dot { width: 10px; height: 10px; border-radius: 50%; }
-  .dot-r { background: #ff5f57; }
-  .dot-y { background: #febc2e; }
-  .dot-g { background: #28c840; }
-  .terminal-body {
-    padding: 1.2rem 1.5rem;
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    line-height: 2;
-  }
-  .t-prompt { color: var(--green); }
-  .t-cmd { color: var(--accent); }
-  .t-out { color: var(--text); }
-  .t-key { color: #ff9d00; }
-  .t-val { color: var(--green); }
-
-  /* ── CONTACT ── */
-  .contact-box {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 3rem;
-    text-align: center;
-  }
-  .contact-box h3 { font-size: 1.5rem; color: var(--heading); margin-bottom: 0.5rem; }
-  .contact-box p { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
-  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-  .contact-link {
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    color: var(--text);
-    text-decoration: none;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 0.7rem 1.4rem;
-    transition: all 0.25s;
-    display: flex; align-items: center; gap: 0.5rem;
-  }
-  .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-
-  /* ── FOOTER ── */
-  footer {
-    position: relative; z-index: 1;
-    text-align: center;
-    padding: 2rem;
-    border-top: 1px solid var(--border);
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--muted);
-  }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes blink {
-    0%, 100% { opacity: 1; } 50% { opacity: 0; }
-  }
-  .cursor {
-    display: inline-block;
-    width: 10px; height: 1.1em;
-    background: var(--accent);
-    vertical-align: text-bottom;
-    animation: blink 1s step-end infinite;
-  }
-
-  /* ── DIVIDER ── */
-  .divider {
-    position: relative; z-index: 1;
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 0 6rem;
-  }
-
-  @media (max-width: 768px) {
-    .hero, section { padding: 4rem 1.5rem; }
-    .divider { margin: 0 1.5rem; }
-    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-    nav { padding: 0 1rem; }
-  }
+:root {
+  --bg:       #050810;
+  --bg1:      #080c18;
+  --bg2:      #0b1020;
+  --surface:  #0e1428;
+  --card:     #101830;
+  --border:   rgba(255,255,255,0.06);
+  --border-h: rgba(99,179,237,0.35);
+  --accent:   #63b3ed;
+  --green:    #48bb78;
+  --amber:    #f6ad55;
+  --red:      #fc8181;
+  --text:     #a0aec0;
+  --text-h:   #e2e8f0;
+  --text-d:   #4a5568;
+  --mono:     'JetBrains Mono', monospace;
+  --sans:     'Space Grotesk', sans-serif;
+  --r:        8px;
+  --r2:       12px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:0.025;}
+.orb{position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;}
+.orb-1{width:600px;height:600px;top:-200px;left:-150px;background:radial-gradient(circle,rgba(66,153,225,0.12) 0%,transparent 70%);}
+.orb-2{width:500px;height:500px;bottom:-150px;right:-100px;background:radial-gradient(circle,rgba(72,187,120,0.08) 0%,transparent 70%);}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;background:rgba(5,8,16,0.75);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--mono);font-size:0.85rem;color:var(--accent);text-decoration:none;}
+.nav-logo em{color:var(--green);font-style:normal;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;color:var(--text-d);text-decoration:none;text-transform:uppercase;transition:color 0.2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform 0.3s ease;}
+.nav-links a:hover{color:var(--accent);}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left;}
+.hero{position:relative;z-index:1;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding:8rem 5rem 4rem;max-width:1280px;margin:0 auto;}
+.hero-left{animation:fadeInLeft 0.8s ease both;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--mono);font-size:0.7rem;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1.5rem;}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--green);}
+.hero-name{font-size:clamp(2.8rem,5vw,5rem);font-weight:700;color:var(--text-h);line-height:1.05;letter-spacing:-0.03em;margin-bottom:0.5rem;}
+.hero-name span{display:block;background:linear-gradient(135deg,var(--accent) 0%,#90cdf4 50%,var(--green) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-title{font-size:0.95rem;color:var(--text);margin:1.2rem 0;line-height:1.75;max-width:460px;}
+.hero-badges{display:flex;flex-wrap:wrap;gap:0.5rem;margin:1.5rem 0 2rem;}
+.badge{font-family:var(--mono);font-size:0.66rem;letter-spacing:0.08em;padding:0.28rem 0.7rem;border-radius:100px;border:1px solid;white-space:nowrap;}
+.badge-blue{color:var(--accent);border-color:rgba(99,179,237,0.3);background:rgba(99,179,237,0.06);}
+.badge-green{color:var(--green);border-color:rgba(72,187,120,0.3);background:rgba(72,187,120,0.06);}
+.badge-amber{color:var(--amber);border-color:rgba(246,173,85,0.3);background:rgba(246,173,85,0.06);}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn{font-family:var(--mono);font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.75rem 1.8rem;border-radius:var(--r);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:0.6rem;transition:all 0.25s;}
+.btn-primary{background:var(--accent);color:#050810;border:none;font-weight:600;}
+.btn-primary:hover{background:#90cdf4;transform:translateY(-2px);box-shadow:0 12px 32px rgba(99,179,237,0.25);}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border);}
+.btn-ghost:hover{border-color:var(--border-h);color:var(--text-h);transform:translateY(-2px);}
+.hero-right{animation:fadeInRight 0.8s ease 0.2s both;}
+.terminal{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.5);position:relative;}
+.terminal::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0.6;}
+.terminal-bar{padding:0.75rem 1rem;background:rgba(255,255,255,0.03);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.5rem;}
+.dot{width:11px;height:11px;border-radius:50%;}
+.dot-r{background:#ff5f57;}.dot-y{background:#febc2e;}.dot-g{background:#28c840;}
+.t-title{font-family:var(--mono);font-size:0.7rem;color:var(--text-d);margin:0 auto;letter-spacing:0.06em;}
+.terminal-body{padding:1.5rem;font-family:var(--mono);font-size:0.76rem;line-height:2.0;}
+.t-line{display:flex;gap:0.5rem;}
+.t-prompt{color:var(--green);user-select:none;}
+.t-cmd{color:var(--accent);}
+.t-key{color:var(--amber);}
+.t-str{color:#90cdf4;}
+.t-cmt{color:var(--text-d);}
+.t-out{color:var(--text);padding-left:1.2rem;}
+.t-cursor{display:inline-block;width:8px;height:14px;background:var(--accent);vertical-align:middle;animation:blink 1.1s step-end infinite;margin-left:2px;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.section{position:relative;z-index:1;padding:6rem 5rem;max-width:1280px;margin:0 auto;}
+.section-header{margin-bottom:3.5rem;}
+.section-eyebrow{font-family:var(--mono);font-size:0.68rem;color:var(--accent);letter-spacing:0.2em;text-transform:uppercase;display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;}
+.section-eyebrow::after{content:'';flex:1;max-width:60px;height:1px;background:linear-gradient(90deg,var(--accent),transparent);}
+.section-title{font-size:2.2rem;font-weight:700;color:var(--text-h);letter-spacing:-0.02em;}
+.divider{position:relative;z-index:1;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0;}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.5rem;transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden;}
+.skill-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(99,179,237,0.04) 0%,transparent 60%);opacity:0;transition:opacity 0.3s;}
+.skill-card:hover{border-color:rgba(99,179,237,0.2);transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,0.3);}
+.skill-card:hover::after{opacity:1;}
+.skill-icon{font-size:1.3rem;margin-bottom:0.75rem;}
+.skill-name{font-size:0.85rem;font-weight:600;color:var(--text-h);margin-bottom:1rem;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.stag{font-family:var(--mono);font-size:0.63rem;color:var(--text);background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:4px;padding:0.2rem 0.55rem;transition:all 0.2s;}
+.stag:hover{background:rgba(99,179,237,0.08);border-color:rgba(99,179,237,0.25);color:var(--accent);}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.75rem;text-decoration:none;display:flex;flex-direction:column;transition:all 0.35s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;cursor:pointer;color:inherit;}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--green));transform:scaleX(0);transform-origin:left;transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);}
+.project-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(99,179,237,0.04) 0%,transparent 60%);opacity:0;transition:opacity 0.3s;}
+.project-card:hover{border-color:rgba(99,179,237,0.25);transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,0.4),0 0 0 1px rgba(99,179,237,0.1);}
+.project-card:hover::before{transform:scaleX(1);}
+.project-card:hover::after{opacity:1;}
+.project-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;position:relative;z-index:1;}
+.project-icon{font-size:1.6rem;line-height:1;}
+.project-ext{font-family:var(--mono);font-size:0.62rem;color:var(--accent);letter-spacing:0.08em;border:1px solid rgba(99,179,237,0.25);border-radius:4px;padding:0.2rem 0.5rem;opacity:0;transform:translateY(-4px);transition:all 0.3s;display:flex;align-items:center;gap:0.3rem;}
+.project-ext::before{content:'↗ ';}
+.project-card:hover .project-ext{opacity:1;transform:translateY(0);}
+.project-title{font-size:0.9rem;font-weight:600;color:var(--text-h);margin-bottom:0.6rem;line-height:1.35;position:relative;z-index:1;}
+.project-desc{font-size:0.8rem;color:var(--text);line-height:1.65;flex:1;margin-bottom:1.25rem;position:relative;z-index:1;}
+.project-tags{display:flex;flex-wrap:wrap;gap:0.35rem;position:relative;z-index:1;}
+.ptag{font-family:var(--mono);font-size:0.62rem;color:var(--accent);background:rgba(99,179,237,0.07);border:1px solid rgba(99,179,237,0.18);border-radius:4px;padding:0.18rem 0.5rem;}
+.timeline{position:relative;padding-left:2rem;}
+.timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--accent),transparent);}
+.exp-item{position:relative;margin-bottom:3rem;}
+.exp-item::before{content:'';position:absolute;left:-2rem;top:8px;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(99,179,237,0.15);transform:translateX(-4px);}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.4rem;flex-wrap:wrap;gap:0.5rem;}
+.exp-role{font-size:1.05rem;font-weight:600;color:var(--text-h);}
+.exp-company{color:var(--accent);font-size:0.9rem;font-weight:500;}
+.exp-date{font-family:var(--mono);font-size:0.68rem;color:var(--text-d);letter-spacing:0.06em;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:4px;padding:0.2rem 0.6rem;}
+.exp-loc{font-size:0.78rem;color:var(--text-d);margin-bottom:1rem;}
+.exp-bullets{list-style:none;}
+.exp-bullets li{font-size:0.84rem;color:var(--text);padding:0.3rem 0 0.3rem 1.2rem;position:relative;line-height:1.65;}
+.exp-bullets li::before{content:'';position:absolute;left:0;top:0.78rem;width:5px;height:1px;background:var(--accent);}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:4rem;}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem;text-align:center;}
+.stat-num{font-size:1.8rem;font-weight:700;color:var(--accent);font-family:var(--mono);}
+.stat-label{font-size:0.72rem;color:var(--text-d);margin-top:0.25rem;letter-spacing:0.06em;}
+.certs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
+.cert-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.25rem;display:flex;align-items:center;gap:1rem;transition:border-color 0.2s;}
+.cert-item:hover{border-color:rgba(99,179,237,0.2);}
+.cert-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.cert-dot-done{background:var(--green);box-shadow:0 0 8px rgba(72,187,120,0.5);}
+.cert-dot-prog{background:var(--amber);box-shadow:0 0 8px rgba(246,173,85,0.4);}
+.cert-dot-plan{background:var(--text-d);}
+.cert-name{font-size:0.85rem;color:var(--text-h);font-weight:500;}
+.cert-meta{font-family:var(--mono);font-size:0.66rem;color:var(--text-d);margin-top:0.2rem;}
+.cert-status{margin-left:auto;font-family:var(--mono);font-size:0.61rem;padding:0.2rem 0.55rem;border-radius:4px;white-space:nowrap;}
+.cert-status-done{color:var(--green);background:rgba(72,187,120,0.08);border:1px solid rgba(72,187,120,0.2);}
+.cert-status-prog{color:var(--amber);background:rgba(246,173,85,0.08);border:1px solid rgba(246,173,85,0.2);}
+.cert-status-plan{color:var(--text-d);background:rgba(255,255,255,0.04);border:1px solid var(--border);}
+.contact-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.contact-left h3{font-size:2rem;font-weight:700;color:var(--text-h);margin-bottom:1rem;letter-spacing:-0.02em;}
+.contact-left p{color:var(--text);font-size:0.9rem;max-width:380px;line-height:1.75;}
+.contact-links{display:flex;flex-direction:column;gap:0.75rem;}
+.contact-link{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;background:var(--card);border:1px solid var(--border);border-radius:var(--r);text-decoration:none;color:var(--text);font-size:0.85rem;transition:all 0.25s;}
+.contact-link:hover{border-color:rgba(99,179,237,0.25);color:var(--text-h);transform:translateX(4px);}
+.contact-link-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.04);border-radius:var(--r);font-size:0.9rem;flex-shrink:0;}
+.contact-link-label{font-family:var(--mono);font-size:0.62rem;color:var(--text-d);margin-top:0.1rem;}
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2rem 5rem;display:flex;justify-content:space-between;align-items:center;max-width:1280px;margin:0 auto;}
+.footer-copy,.footer-tag{font-family:var(--mono);font-size:0.7rem;color:var(--text-d);}
+.footer-tag span{color:var(--green);}
+@keyframes fadeInLeft{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeInRight{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+@media(max-width:1024px){
+  .hero{grid-template-columns:1fr;padding:7rem 2.5rem 3rem;}
+  .hero-right{display:none;}
+  .section{padding:4rem 2.5rem;}
+  .skills-grid,.projects-grid{grid-template-columns:repeat(2,1fr);}
+  .stats-row{grid-template-columns:repeat(2,1fr);}
+  .contact-wrapper{grid-template-columns:1fr;gap:2rem;}
+  .certs-grid{grid-template-columns:1fr;}
+  footer{padding:2rem 2.5rem;}
+  nav{padding:0 1.5rem;}
+}
+@media(max-width:640px){
+  .skills-grid,.projects-grid,.stats-row,.certs-grid{grid-template-columns:1fr;}
+  .nav-links{gap:1.2rem;}
+  .nav-links a{font-size:0.62rem;}
+}
 </style>
 </head>
 <body>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-brand"><span>~/</span>CyberBoyNader</div>
-  <div class="nav-links">
-    <a href="#about">about</a>
-    <a href="#skills">skills</a>
-    <a href="#projects">projects</a>
-    <a href="#contact">contact</a>
-  </div>
+  <a href="#" class="nav-logo"><em>~/</em>nader-elfiky</a>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
 </nav>
 
 <!-- HERO -->
+<div style="position:relative;z-index:1;">
 <div class="hero">
-  <p class="hero-prompt">&gt; whoami</p>
-  <h1 class="hero-name">Nader<br/><span>Elfiky</span></h1>
-  <p class="hero-role">Network &amp; Cybersecurity Student &nbsp;|&nbsp; <span>Aspiring Penetration Tester</span></p>
-  <p class="hero-desc">
-    Building real-world security labs — honeypots, port scanners, and secure web applications —
-    to understand attacker behavior and sharpen defensive strategies.
-  </p>
-  <p class="hero-focus">
-    <span>current_focus:</span> pentesting | networking | cloud security
-  </p>
-  <div class="hero-cta">
-    <a href="#projects" class="btn btn-primary">&#9658; View Projects</a>
-    <a href="https://www.linkedin.com/in/nader-elfiky2333" target="_blank" class="btn btn-outline">LinkedIn Profile</a>
-  </div>
-</div>
-
-<hr class="divider"/>
-
-<!-- ABOUT -->
-<section id="about">
-  <p class="section-label">// 01. background</p>
-  <h2 class="section-title">About Me</h2>
-  <div class="about-grid">
-    <div class="about-text">
-      <p>
-        I'm <strong>CyberBoyNader</strong>, a Network and Cybersecurity student
-        with a strong focus on hands-on security projects. I enjoy building real-world
-        labs to understand attacker behavior and defensive strategies.
-      </p>
-      <p>
-        Currently interning at <strong>Vodafone Egypt</strong> as a Cybersecurity Intern,
-        and actively participating in <strong>HackerOne bug bounty programs</strong>,
-        hunting OWASP Top 10 vulnerabilities on live applications.
-      </p>
-      <p>
-        My goal is to grow as a <strong>penetration tester</strong> with a solid
-        foundation in networking, operating systems, and security monitoring.
-      </p>
+  <div class="hero-left">
+    <div class="hero-eyebrow">Available for opportunities</div>
+    <h1 class="hero-name">Nader<br/><span>Elfiky</span></h1>
+    <p class="hero-title">Network &amp; Cybersecurity student specializing in penetration testing, vulnerability research, and building real-world security labs.</p>
+    <div class="hero-badges">
+      <span class="badge badge-blue">Penetration Testing</span>
+      <span class="badge badge-green">HackerOne Active</span>
+      <span class="badge badge-amber">Vodafone Intern</span>
+      <span class="badge badge-blue">OWASP Top 10</span>
+      <span class="badge badge-green">ELK Stack</span>
+      <span class="badge badge-amber">Bug Bounty</span>
     </div>
-    <div class="terminal-block">
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="https://www.linkedin.com/in/nader-elfiky2333" target="_blank" class="btn btn-ghost">LinkedIn ↗</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="terminal">
       <div class="terminal-bar">
-        <div class="dot dot-r"></div>
-        <div class="dot dot-y"></div>
-        <div class="dot dot-g"></div>
+        <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+        <span class="t-title">nader@kali — zsh</span>
       </div>
       <div class="terminal-body">
-        <div><span class="t-prompt">nader@kali</span>:~$ <span class="t-cmd">cat profile.json</span></div>
+        <div class="t-line"><span class="t-prompt">❯</span>&nbsp;<span class="t-cmd">cat profile.json</span></div>
         <div class="t-out">{</div>
-        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"name"</span>: <span class="t-val">"Nader Elfiky"</span>,</div>
-        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"role"</span>: <span class="t-val">"Pentester (Jr)"</span>,</div>
-        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"location"</span>: <span class="t-val">"Cairo, Egypt"</span>,</div>
-        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"status"</span>: <span class="t-val">"Vodafone Intern"</span>,</div>
-        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"bounties"</span>: <span class="t-val">"HackerOne Active"</span>,</div>
-        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"focus"</span>: [</div>
-        <div class="t-out">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"WebAppSec"</span>,</div>
-        <div class="t-out">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"NetworkSec"</span>,</div>
-        <div class="t-out">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"CloudSec"</span></div>
-        <div class="t-out">&nbsp;&nbsp;]</div>
+        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"name"</span>: <span class="t-str">"Nader Elfiky"</span>,</div>
+        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"role"</span>: <span class="t-str">"Pentester (Junior)"</span>,</div>
+        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"location"</span>: <span class="t-str">"Cairo, Egypt"</span>,</div>
+        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"status"</span>: <span class="t-str">"Vodafone Cybersec Intern"</span>,</div>
+        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"platforms"</span>: [<span class="t-str">"HackerOne"</span>],</div>
+        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"tools"</span>: [<span class="t-str">"Burp"</span>, <span class="t-str">"Metasploit"</span>, <span class="t-str">"Nmap"</span>],</div>
+        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"siem"</span>: <span class="t-str">"ELK Stack"</span></div>
         <div class="t-out">}</div>
-        <div><span class="t-prompt">nader@kali</span>:~$ <span class="cursor"></span></div>
+        <br/>
+        <div class="t-line"><span class="t-prompt">❯</span>&nbsp;<span class="t-cmd">nmap -sV --open target</span></div>
+        <div class="t-out"><span class="t-cmt"># Nmap 7.94 scan report</span></div>
+        <div class="t-out">22/tcp &nbsp;open &nbsp;ssh &nbsp;&nbsp;&nbsp;OpenSSH 8.9</div>
+        <div class="t-out">80/tcp &nbsp;open &nbsp;http &nbsp;&nbsp;nginx 1.22</div>
+        <div class="t-out">443/tcp open &nbsp;https &nbsp;nginx 1.22</div>
+        <br/>
+        <div class="t-line"><span class="t-prompt">❯</span>&nbsp;<span class="t-cursor"></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-header">
+    <div class="section-eyebrow">01 / about</div>
+    <h2 class="section-title">Background</h2>
+  </div>
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-num">5+</div><div class="stat-label">Security Projects</div></div>
+    <div class="stat-card"><div class="stat-num">1+</div><div class="stat-label">Year Bug Bounty</div></div>
+    <div class="stat-card"><div class="stat-num">OWASP</div><div class="stat-label">Top 10 Focus</div></div>
+    <div class="stat-card"><div class="stat-num">ELK</div><div class="stat-label">SIEM / Monitoring</div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
+    <div>
+      <p style="font-size:0.93rem;line-height:1.8;margin-bottom:1rem;">I'm a <strong style="color:var(--text-h)">Network and Cybersecurity student</strong> at Elsewedy University of Technology (2024–2028), with hands-on experience across penetration testing, vulnerability assessment, and security monitoring.</p>
+      <p style="font-size:0.93rem;line-height:1.8;margin-bottom:1rem;">Currently completing a <strong style="color:var(--accent)">Cybersecurity Internship at Vodafone Egypt</strong>, performing real enterprise vulnerability assessments, API pentesting, and security automation — while simultaneously participating in <strong style="color:var(--green)">HackerOne bug bounty programs</strong> hunting OWASP Top 10 vulnerabilities on live production systems.</p>
+      <p style="font-size:0.93rem;line-height:1.8;">My goal is to grow into a <strong style="color:var(--text-h)">penetration tester</strong> who deeply understands both the attacker mindset and the defensive infrastructure needed to build secure, resilient systems.</p>
+    </div>
+    <div>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+          <span class="t-title">education.sh</span>
+        </div>
+        <div class="terminal-body" style="font-size:0.73rem;line-height:1.9;">
+          <div class="t-out"><span class="t-key">university:</span> <span class="t-str">Elsewedy Univ. of Technology</span></div>
+          <div class="t-out"><span class="t-key">degree:</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">B.Eng Network &amp; Cybersecurity</span></div>
+          <div class="t-out"><span class="t-key">period:</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">Sep 2024 → Jun 2028</span></div>
+          <div class="t-out"><span class="t-key">location:</span>&nbsp;&nbsp;<span class="t-str">Cairo, Egypt</span></div>
+          <br/>
+          <div class="t-out"><span class="t-key">coursework:</span></div>
+          <div class="t-out">&nbsp;&nbsp;<span class="t-cmt"># Network Security</span></div>
+          <div class="t-out">&nbsp;&nbsp;<span class="t-cmt"># Ethical Hacking</span></div>
+          <div class="t-out">&nbsp;&nbsp;<span class="t-cmt"># Operating Systems</span></div>
+          <div class="t-out">&nbsp;&nbsp;<span class="t-cmt"># Cryptography</span></div>
+          <div class="t-out">&nbsp;&nbsp;<span class="t-cmt"># Web Development</span></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="divider"/>
+<div class="divider"></div>
 
 <!-- SKILLS -->
-<section id="skills">
-  <p class="section-label">// 02. capabilities</p>
-  <h2 class="section-title">Technical Skills</h2>
+<section class="section" id="skills">
+  <div class="section-header">
+    <div class="section-eyebrow">02 / capabilities</div>
+    <h2 class="section-title">Technical Skills</h2>
+  </div>
   <div class="skills-grid">
-
     <div class="skill-card">
-      <div class="skill-card-title">🛡️ Cybersecurity</div>
-      <span class="skill-tag">Penetration Testing</span>
-      <span class="skill-tag">Burp Suite</span>
-      <span class="skill-tag">Web Recon</span>
-      <span class="skill-tag">SQL Injection</span>
-      <span class="skill-tag">XSS</span>
-      <span class="skill-tag">IDOR</span>
-      <span class="skill-tag">CSRF</span>
-      <span class="skill-tag">Broken Auth</span>
-      <span class="skill-tag">OWASP Top 10</span>
+      <div class="skill-icon">🛡️</div>
+      <div class="skill-name">Penetration Testing</div>
+      <div class="skill-tags">
+        <span class="stag">Burp Suite</span><span class="stag">Metasploit</span><span class="stag">OWASP ZAP</span><span class="stag">Web App Pentesting</span><span class="stag">API Security</span><span class="stag">XSS / IDOR</span><span class="stag">SQLi</span><span class="stag">CSRF</span>
+      </div>
     </div>
-
     <div class="skill-card">
-      <div class="skill-card-title">🌐 Networking</div>
-      <span class="skill-tag">TCP/IP</span>
-      <span class="skill-tag">OSI Model</span>
-      <span class="skill-tag">VLAN</span>
-      <span class="skill-tag">Routing & Switching</span>
-      <span class="skill-tag">Site-to-Site VPN</span>
-      <span class="skill-tag">GRE Tunneling</span>
-      <span class="skill-tag">ICMP Analysis</span>
-      <span class="skill-tag">Network Monitoring</span>
+      <div class="skill-icon">🌐</div>
+      <div class="skill-name">Networking</div>
+      <div class="skill-tags">
+        <span class="stag">TCP/IP</span><span class="stag">DNS / HTTP/S</span><span class="stag">VPN / GRE</span><span class="stag">VLAN</span><span class="stag">Wireshark</span><span class="stag">Nmap</span><span class="stag">Firewall</span><span class="stag">IDS/IPS</span>
+      </div>
     </div>
-
     <div class="skill-card">
-      <div class="skill-card-title">☁️ Cloud & Infrastructure</div>
-      <span class="skill-tag">AWS</span>
-      <span class="skill-tag">Azure</span>
-      <span class="skill-tag">Hybrid Cloud</span>
-      <span class="skill-tag">On-Prem + Cloud VPN</span>
-      <span class="skill-tag">Latency Analysis</span>
-      <span class="skill-tag">Throughput Analysis</span>
+      <div class="skill-icon">☁️</div>
+      <div class="skill-name">Cloud &amp; Infrastructure</div>
+      <div class="skill-tags">
+        <span class="stag">AWS</span><span class="stag">Azure</span><span class="stag">Hybrid Cloud</span><span class="stag">Docker</span><span class="stag">Docker Compose</span><span class="stag">Kali Linux</span><span class="stag">Packet Tracer</span>
+      </div>
     </div>
-
     <div class="skill-card">
-      <div class="skill-card-title">💻 Programming</div>
-      <span class="skill-tag">Python</span>
-      <span class="skill-tag">PHP</span>
-      <span class="skill-tag">JavaScript</span>
-      <span class="skill-tag">Java</span>
-      <span class="skill-tag">Bash</span>
-      <span class="skill-tag">PowerShell</span>
-      <span class="skill-tag">MySQL</span>
-      <span class="skill-tag">HTML/CSS</span>
+      <div class="skill-icon">📊</div>
+      <div class="skill-name">SIEM &amp; Monitoring</div>
+      <div class="skill-tags">
+        <span class="stag">Elasticsearch</span><span class="stag">Logstash</span><span class="stag">Kibana</span><span class="stag">Filebeat</span><span class="stag">Nessus</span><span class="stag">OpenVAS</span><span class="stag">Log Analysis</span>
+      </div>
     </div>
-
     <div class="skill-card">
-      <div class="skill-card-title">🧰 Tools & Platforms</div>
-      <span class="skill-tag">Kali Linux</span>
-      <span class="skill-tag">Docker</span>
-      <span class="skill-tag">ELK Stack</span>
-      <span class="skill-tag">Wireshark</span>
-      <span class="skill-tag">Nmap</span>
-      <span class="skill-tag">Nessus</span>
-      <span class="skill-tag">Metasploit</span>
-      <span class="skill-tag">Packet Tracer</span>
-      <span class="skill-tag">Git/GitHub</span>
+      <div class="skill-icon">💻</div>
+      <div class="skill-name">Programming</div>
+      <div class="skill-tags">
+        <span class="stag">Python</span><span class="stag">PHP</span><span class="stag">Java</span><span class="stag">Bash</span><span class="stag">PowerShell</span><span class="stag">JavaScript</span><span class="stag">MySQL</span><span class="stag">HTML/CSS</span>
+      </div>
     </div>
-
     <div class="skill-card">
-      <div class="skill-card-title">📚 Core Concepts</div>
-      <span class="skill-tag">Operating Systems</span>
-      <span class="skill-tag">CPU Scheduling</span>
-      <span class="skill-tag">Software Entropy</span>
-      <span class="skill-tag">Secure System Design</span>
-      <span class="skill-tag">Log Pipelines</span>
-      <span class="skill-tag">Threat Intelligence</span>
-      <span class="skill-tag">Incident Response</span>
+      <div class="skill-icon">🔬</div>
+      <div class="skill-name">Security Frameworks</div>
+      <div class="skill-tags">
+        <span class="stag">OWASP Top 10</span><span class="stag">CVE / CVSS</span><span class="stag">NIST CSF</span><span class="stag">Threat Modeling</span><span class="stag">Incident Response</span><span class="stag">Secure SDLC</span>
+      </div>
     </div>
-
   </div>
 </section>
 
-<hr class="divider"/>
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="section-header">
+    <div class="section-eyebrow">03 / experience</div>
+    <h2 class="section-title">Work History</h2>
+  </div>
+  <div class="timeline">
+    <div class="exp-item">
+      <div class="exp-header">
+        <div><div class="exp-role">Cybersecurity Intern</div><div class="exp-company">Vodafone Egypt</div></div>
+        <span class="exp-date">Aug 2025 – Present</span>
+      </div>
+      <div class="exp-loc">📍 Giza, Egypt</div>
+      <ul class="exp-bullets">
+        <li>Conducted network and system vulnerability assessments using Nmap, Nessus, and OpenVAS — identifying 20+ security gaps across enterprise infrastructure</li>
+        <li>Performed penetration testing on web applications, networks, and APIs; delivered structured reports with risk ratings and remediation recommendations</li>
+        <li>Assisted in incident response and threat analysis including malware detection, log monitoring, and root-cause investigation</li>
+        <li>Implemented security hardening for network devices, servers, and cloud environments (AWS/Azure)</li>
+        <li>Developed Python, Bash, and PowerShell automation scripts improving operational efficiency by ~30%</li>
+      </ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-header">
+        <div><div class="exp-role">Bug Bounty Hunter</div><div class="exp-company">HackerOne</div></div>
+        <span class="exp-date">Jan 2025 – Present</span>
+      </div>
+      <div class="exp-loc">🌐 Remote</div>
+      <ul class="exp-bullets">
+        <li>Perform security testing on live web applications within HackerOne programs following responsible disclosure policies</li>
+        <li>Identified and reported XSS, IDOR, broken authentication, and access control flaws aligned with OWASP Top 10</li>
+        <li>Produced structured vulnerability reports with impact assessments, PoC steps, and remediation guidance</li>
+      </ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-header">
+        <div><div class="exp-role">Data Engineer</div><div class="exp-company">Digital Egypt Pioneers Initiative (DEPI)</div></div>
+        <span class="exp-date">Nov 2025 – Present</span>
+      </div>
+      <div class="exp-loc">📍 Giza, Egypt</div>
+      <ul class="exp-bullets">
+        <li>Participating in Egypt's national digital transformation initiative, developing data pipeline and processing skills relevant to security analytics</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
 
 <!-- PROJECTS -->
-<section id="projects">
-  <p class="section-label">// 03. featured work</p>
-  <h2 class="section-title">Projects</h2>
+<section class="section" id="projects">
+  <div class="section-header">
+    <div class="section-eyebrow">04 / projects</div>
+    <h2 class="section-title">Featured Work</h2>
+  </div>
   <div class="projects-grid">
 
-    <!-- Honeypot -->
-    <a class="project-card"
-       href="https://www.linkedin.com/in/nader-elfiky2333/details/projects/"
-       target="_blank" rel="noopener noreferrer">
-      <div class="project-card-header">
-        <div class="project-icon">🍯</div>
-        <div class="project-li-badge">&#128279; View on LinkedIn</div>
-      </div>
-      <div class="project-card-title">Threat Intelligence Honeypot Network</div>
-      <div class="project-card-desc">
-        Deployed a low-interaction SSH honeypot using Cowrie and Docker to simulate
-        real-world attacker behavior. Integrated ELK Stack for centralized log analysis
-        and built Kibana dashboards for SOC/Blue Team threat intelligence.
-      </div>
-      <div class="project-tags">
-        <span class="project-tag">Cowrie</span>
-        <span class="project-tag">Docker</span>
-        <span class="project-tag">ELK Stack</span>
-        <span class="project-tag">Kibana</span>
-        <span class="project-tag">Threat Intel</span>
-      </div>
+    <a class="project-card" href="https://www.linkedin.com/in/nader-elfiky2333/details/projects/" target="_blank" rel="noopener noreferrer">
+      <div class="project-header"><div class="project-icon">🍯</div><div class="project-ext">LinkedIn</div></div>
+      <div class="project-title">Threat Intelligence Honeypot Network</div>
+      <div class="project-desc">Deployed a low-interaction SSH honeypot using Cowrie and Docker to simulate real-world attacker behavior. Integrated ELK Stack for centralized log analysis and built Kibana dashboards for SOC-level threat intelligence.</div>
+      <div class="project-tags"><span class="ptag">Cowrie</span><span class="ptag">Docker</span><span class="ptag">Elasticsearch</span><span class="ptag">Kibana</span><span class="ptag">Filebeat</span></div>
     </a>
 
-    <!-- FilmForge -->
-    <a class="project-card"
-       href="https://www.linkedin.com/in/nader-elfiky2333/details/projects/"
-       target="_blank" rel="noopener noreferrer">
-      <div class="project-card-header">
-        <div class="project-icon">🔐</div>
-        <div class="project-li-badge">&#128279; View on LinkedIn</div>
-      </div>
-      <div class="project-card-title">FilmForge – Secure Movie Review Platform</div>
-      <div class="project-card-desc">
-        Full-stack secure web application with PHP REST API, bcrypt password hashing,
-        role-based access control, and complete OWASP Top 10 protection: SQLi prevention,
-        CSRF tokens, input sanitization, and controlled CORS.
-      </div>
-      <div class="project-tags">
-        <span class="project-tag">PHP</span>
-        <span class="project-tag">MySQL</span>
-        <span class="project-tag">CSRF</span>
-        <span class="project-tag">OWASP</span>
-        <span class="project-tag">REST API</span>
-      </div>
+    <a class="project-card" href="https://www.linkedin.com/in/nader-elfiky2333/details/projects/" target="_blank" rel="noopener noreferrer">
+      <div class="project-header"><div class="project-icon">🔐</div><div class="project-ext">LinkedIn</div></div>
+      <div class="project-title">FilmForge – Secure Movie Review Platform</div>
+      <div class="project-desc">Full-stack web app with security-first architecture. PHP REST API with bcrypt hashing, role-based access control, and complete OWASP Top 10 protection — prepared statements, CSRF tokens, input sanitization, and controlled CORS.</div>
+      <div class="project-tags"><span class="ptag">PHP</span><span class="ptag">MySQL</span><span class="ptag">CSRF</span><span class="ptag">OWASP</span><span class="ptag">REST API</span></div>
     </a>
 
-    <!-- Hybrid Cloud -->
-    <a class="project-card"
-       href="https://www.linkedin.com/in/nader-elfiky2333/details/projects/"
-       target="_blank" rel="noopener noreferrer">
-      <div class="project-card-header">
-        <div class="project-icon">☁️</div>
-        <div class="project-li-badge">&#128279; View on LinkedIn</div>
-      </div>
-      <div class="project-card-title">Hybrid Cloud Connectivity (On-Prem + Cloud VPN)</div>
-      <div class="project-card-desc">
-        Designed and simulated a hybrid cloud environment with Site-to-Site GRE VPN tunnel,
-        VLAN segmentation, and tunnel health monitoring. Built a simulated dashboard tracking
-        latency, throughput, and uptime metrics.
-      </div>
-      <div class="project-tags">
-        <span class="project-tag">GRE VPN</span>
-        <span class="project-tag">VLAN</span>
-        <span class="project-tag">Routing</span>
-        <span class="project-tag">Packet Tracer</span>
-        <span class="project-tag">Hybrid Cloud</span>
-      </div>
+    <a class="project-card" href="https://www.linkedin.com/in/nader-elfiky2333/details/projects/" target="_blank" rel="noopener noreferrer">
+      <div class="project-header"><div class="project-icon">☁️</div><div class="project-ext">LinkedIn</div></div>
+      <div class="project-title">Hybrid Cloud Connectivity (On-Prem + VPN)</div>
+      <div class="project-desc">Designed and simulated a hybrid cloud environment connecting on-premises data center to cloud via Site-to-Site GRE VPN. Configured VLAN segmentation, inter-VLAN routing, and a dashboard tracking latency and throughput metrics.</div>
+      <div class="project-tags"><span class="ptag">GRE VPN</span><span class="ptag">VLAN</span><span class="ptag">Routing</span><span class="ptag">Packet Tracer</span><span class="ptag">Hybrid Cloud</span></div>
     </a>
 
-    <!-- CPU Scheduler -->
-    <a class="project-card"
-       href="https://www.linkedin.com/in/nader-elfiky2333/details/projects/"
-       target="_blank" rel="noopener noreferrer">
-      <div class="project-card-header">
-        <div class="project-icon">🖥️</div>
-        <div class="project-li-badge">&#128279; View on LinkedIn</div>
-      </div>
-      <div class="project-card-title">CPU Scheduling Simulator</div>
-      <div class="project-card-desc">
-        Operating Systems simulator implementing FCFS, SJF (preemptive &amp; non-preemptive),
-        Priority Scheduling, and Round Robin. Features an interactive GUI with dynamic process
-        input and Gantt Chart visualization via Matplotlib.
-      </div>
-      <div class="project-tags">
-        <span class="project-tag">Python</span>
-        <span class="project-tag">CustomTkinter</span>
-        <span class="project-tag">Matplotlib</span>
-        <span class="project-tag">OS Algorithms</span>
-      </div>
+    <a class="project-card" href="https://www.linkedin.com/in/nader-elfiky2333/details/projects/" target="_blank" rel="noopener noreferrer">
+      <div class="project-header"><div class="project-icon">🖥️</div><div class="project-ext">LinkedIn</div></div>
+      <div class="project-title">CPU Scheduling Simulator</div>
+      <div class="project-desc">OS simulator implementing FCFS, SJF (preemptive &amp; non-preemptive), Priority Scheduling, and Round Robin. Interactive GUI with dynamic process input and Gantt Chart visualization — built with CustomTkinter and Matplotlib.</div>
+      <div class="project-tags"><span class="ptag">Python</span><span class="ptag">CustomTkinter</span><span class="ptag">Matplotlib</span><span class="ptag">OS Algorithms</span></div>
     </a>
 
-    <!-- Software Entropy -->
-    <a class="project-card"
-       href="https://www.linkedin.com/in/nader-elfiky2333/details/projects/"
-       target="_blank" rel="noopener noreferrer">
-      <div class="project-card-header">
-        <div class="project-icon">📄</div>
-        <div class="project-li-badge">&#128279; View on LinkedIn</div>
-      </div>
-      <div class="project-card-title">Software Entropy – Academic Research</div>
-      <div class="project-card-desc">
-        Academic research exploring software entropy through thermodynamics and information
-        theory. Analyzes how unmanaged software evolution increases complexity, reduces
-        maintainability, and raises failure risk.
-      </div>
-      <div class="project-tags">
-        <span class="project-tag">Research</span>
-        <span class="project-tag">Software Engineering</span>
-        <span class="project-tag">Information Theory</span>
-      </div>
+    <a class="project-card" href="https://www.linkedin.com/in/nader-elfiky2333/details/projects/" target="_blank" rel="noopener noreferrer">
+      <div class="project-header"><div class="project-icon">📄</div><div class="project-ext">LinkedIn</div></div>
+      <div class="project-title">Software Entropy – Academic Research</div>
+      <div class="project-desc">Academic research exploring software entropy through thermodynamics and information theory. Analyzes how unmanaged software evolution increases complexity, reduces maintainability, and raises system failure risk.</div>
+      <div class="project-tags"><span class="ptag">Research</span><span class="ptag">Software Engineering</span><span class="ptag">Information Theory</span></div>
     </a>
 
-    <!-- Port Scanner -->
-    <a class="project-card"
-       href="https://www.linkedin.com/in/nader-elfiky2333/details/projects/"
-       target="_blank" rel="noopener noreferrer">
-      <div class="project-card-header">
-        <div class="project-icon">🔍</div>
-        <div class="project-li-badge">&#128279; View on LinkedIn</div>
-      </div>
-      <div class="project-card-title">Network Port Scanner</div>
-      <div class="project-card-desc">
-        Custom Python port scanner for TCP port enumeration, service detection, and
-        timeout handling — simulating real penetration testing reconnaissance workflows.
-        Supports open/closed/filtered detection.
-      </div>
-      <div class="project-tags">
-        <span class="project-tag">Python</span>
-        <span class="project-tag">Networking</span>
-        <span class="project-tag">Pentesting</span>
-        <span class="project-tag">Recon</span>
-      </div>
+    <a class="project-card" href="https://www.linkedin.com/in/nader-elfiky2333/details/projects/" target="_blank" rel="noopener noreferrer">
+      <div class="project-header"><div class="project-icon">🔍</div><div class="project-ext">LinkedIn</div></div>
+      <div class="project-title">Network Port Scanner</div>
+      <div class="project-desc">Custom Python port scanner for TCP port enumeration, service detection, and timeout handling — simulating real penetration testing reconnaissance workflows. Supports open, closed, and filtered port detection.</div>
+      <div class="project-tags"><span class="ptag">Python</span><span class="ptag">TCP Sockets</span><span class="ptag">Recon</span><span class="ptag">Pentesting</span></div>
     </a>
 
   </div>
 </section>
 
-<hr class="divider"/>
+<div class="divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section class="section" id="certs">
+  <div class="section-header">
+    <div class="section-eyebrow">05 / credentials</div>
+    <h2 class="section-title">Certifications</h2>
+  </div>
+  <div class="certs-grid">
+    <div class="cert-item">
+      <div class="cert-dot cert-dot-done"></div>
+      <div><div class="cert-name">Google Cybersecurity Certificate</div><div class="cert-meta">Google / Coursera</div></div>
+      <span class="cert-status cert-status-done">Completed</span>
+    </div>
+    <div class="cert-item">
+      <div class="cert-dot cert-dot-done"></div>
+      <div><div class="cert-name">Cybersecurity Fundamentals</div><div class="cert-meta">IBM / Coursera</div></div>
+      <span class="cert-status cert-status-done">Completed</span>
+    </div>
+    <div class="cert-item">
+      <div class="cert-dot cert-dot-prog"></div>
+      <div><div class="cert-name">eJPT — Junior Penetration Tester</div><div class="cert-meta">eLearnSecurity</div></div>
+      <span class="cert-status cert-status-prog">In Progress</span>
+    </div>
+    <div class="cert-item">
+      <div class="cert-dot cert-dot-plan"></div>
+      <div><div class="cert-name">CompTIA Security+</div><div class="cert-meta">CompTIA — Target 2025</div></div>
+      <span class="cert-status cert-status-plan">Planned</span>
+    </div>
+    <div class="cert-item">
+      <div class="cert-dot cert-dot-plan"></div>
+      <div><div class="cert-name">Certified Ethical Hacker (CEH)</div><div class="cert-meta">EC-Council — Target 2025</div></div>
+      <span class="cert-status cert-status-plan">Planned</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
 
 <!-- CONTACT -->
-<section id="contact">
-  <p class="section-label">// 04. get in touch</p>
-  <h2 class="section-title">Contact</h2>
-  <div class="contact-box">
-    <h3>Let's Connect</h3>
-    <p>Open to internships, junior pentesting roles, and collaborations.</p>
+<section class="section" id="contact">
+  <div class="section-header">
+    <div class="section-eyebrow">06 / contact</div>
+    <h2 class="section-title">Get In Touch</h2>
+  </div>
+  <div class="contact-wrapper">
+    <div class="contact-left">
+      <h3>Let's work together.</h3>
+      <p style="margin-top:1rem;">Open to junior penetration testing roles, cybersecurity internships, and bug bounty collaborations. Currently based in Cairo, Egypt — available for remote and on-site opportunities.</p>
+    </div>
     <div class="contact-links">
       <a href="mailto:rakan1111233@gmail.com" class="contact-link">
-        ✉ rakan1111233@gmail.com
+        <div class="contact-link-icon">✉</div>
+        <div><div>rakan1111233@gmail.com</div><div class="contact-link-label">Email</div></div>
       </a>
       <a href="https://www.linkedin.com/in/nader-elfiky2333" target="_blank" class="contact-link">
-        in LinkedIn
+        <div class="contact-link-icon" style="font-family:var(--sans);font-weight:700;font-size:0.8rem;">in</div>
+        <div><div>linkedin.com/in/nader-elfiky2333</div><div class="contact-link-label">LinkedIn</div></div>
       </a>
       <a href="https://github.com/nader11-hub" target="_blank" class="contact-link">
-        ⌥ GitHub
+        <div class="contact-link-icon">⌥</div>
+        <div><div>github.com/nader11-hub</div><div class="contact-link-label">GitHub</div></div>
       </a>
     </div>
   </div>
 </section>
 
-<footer>
-  <p>// nader elfiky &nbsp;·&nbsp; cairo, egypt &nbsp;·&nbsp; built with passion for security</p>
-</footer>
+<div class="divider" style="max-width:1280px;margin:0 auto;"></div>
+<div style="max-width:1280px;margin:0 auto;">
+  <footer>
+    <span class="footer-copy">© 2025 Nader Elfiky — Cairo, Egypt</span>
+    <span class="footer-tag">status: <span>available for hire</span></span>
+  </footer>
+</div>
 
 </body>
 </html>
